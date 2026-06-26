@@ -1,3 +1,6 @@
+# Секреты и конфигурация
+.env
+*.session
+last_messages.json
 __pycache__/
 *.pyc
-.env
