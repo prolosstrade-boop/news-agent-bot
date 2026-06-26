@@ -1,6 +1,26 @@
-# Секреты и конфигурация
+# Секреты
 .env
+.env.local
+*.key
+*.pem
+
+# Сессии
 *.session
-last_messages.json
+*.session-journal
+
+# Кэш
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Данные
+last_messages.json
+sent_news.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
