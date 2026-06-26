@@ -2,8 +2,8 @@ name: News Agent Check
 
 on:
   schedule:
-    # Запуск каждые 5 минут
-    - cron: '*/5 * * * *'
+    # Запуск каждые 10 минут
+    - cron: '*/10 * * * *'
   workflow_dispatch:  # Возможность запустить вручную
 
 jobs:
