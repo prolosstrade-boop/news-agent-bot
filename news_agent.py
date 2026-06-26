@@ -62,6 +62,11 @@ TOPICS = {
 def get_news():
     feeds = [
         "https://tass.ru/rss/v2.xml",
+        "https://rssexport.rbc.ru/rbcnews/news/20/full.rss",
+        "https://www.kommersant.ru/RSS/news.xml",
+        "https://lenta.ru/rss/news",
+        "https://www.interfax.ru/rss.asp",
+        "https://iz.ru/xml/feed.php",
         "https://ria.ru/export/rss2/archive/index.xml",
         "https://meduza.io/rss2/all",
         "https://www.vedomosti.ru/rss/news",
