@@ -107,19 +107,19 @@ def should_send(detected_topics):
 # === ОТПРАВКА В TELEGRAM ===
 def send_telegram(title, link, summary, topics):
     topics_emoji = {
-        "politics": "🏛",
-        "economy": "📊",
-        "finance": "💰",
-        "energy": "⛽",
-        "military": "🎖",
-        "tech": "💻",
+        "politics": "🏛политика",
+        "economy": "📊экономика",
+        "finance": "💰финансы",
+        "energy": "⛽энергетика",
+        "military": "🎖оборона",
+        "tech": "💻технологии",
         "social": "👥",
-        "international": "🌍"
+        "international": "🌍в мире"
     }
     
     topics_str = " ".join([topics_emoji.get(t, "📰") for t in topics])
     
-    message = f"""{topics_str} <b>Новость</b>
+    message = f"""{topics_str} 
 
 📍 <b>{title}</b>
 
