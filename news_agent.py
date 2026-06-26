@@ -41,11 +41,12 @@ def is_important(title, description):
 
 def get_news_from_rss():
     """Получение новостей из RSS-лент"""
-    rss_feeds = [
-        "https://tass.ru/rss/v2.xml",
-        "https://ria.ru/export/rss2/archive/index.xml",
-        "https://rbc.ru/v10/ajax/get-news-feed/project/rbcnews/lastN/20",
-    ]
+rss_feeds = [
+    "https://tass.ru/rss/v2.xml",
+    "https://ria.ru/export/rss2/archive/index.xml",
+    "https://www.kommersant.ru/RSS/news.xml",  # добавить
+    "https://rbc.ru/v10/ajax/get-news-feed/project/rbcnews/lastN/20",
+]
     
     news_list = []
     for feed_url in rss_feeds:
