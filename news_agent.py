@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 import json
 
 # === НАСТРОЙКИ ===
-TELEGRAM_TOKEN = os.getenv("737065869:AAHE1AnXYpoX7sgiyJQ0SNmko4oYB-W2Dvk")
-CHAT_ID = os.getenv("8666411108")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")  # опционально
 
 # Ключевые слова для фильтрации важных событий
