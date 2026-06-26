@@ -1,21 +1,15 @@
-name: News Agent Check
+name: News Agent Debug
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'
-  workflow_dispatch:
+  workflow_dispatch:  # Только ручной запуск для отладки
 
 jobs:
-  check_news:
+  debug:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # ВАЖНО: даём права на запись
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -26,15 +20,11 @@ jobs:
       run: |
         pip install -r requirements.txt
     
-    - name: Run news agent
+    - name: Run debug script
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
-        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
-      run: python news_agent.py
-    
-    - name: Commit and push if changed
-      run: |
+      run: python news_agent_debug.py      run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add sent_news.json
