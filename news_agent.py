@@ -50,15 +50,13 @@ def get_news():
 
 # === ОТПРАВКА В TELEGRAM ===
 def send_telegram(title, link, summary):
-    message = f"""🚨 <b>Новость</b>
-
-📍 <b>{title}</b>
+    message = f"""
+    {datetime.now().strftime('%H:%M, %d.%m.%Y')}
+🚨 <b>{title}</b>
 
 📝 {summary}
-
 🔗 <a href="{link}">Подробнее</a>
-
-⏰ {datetime.now().strftime('%H:%M, %d.%m.%Y')}"""
+"""
     
     try:
         url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
