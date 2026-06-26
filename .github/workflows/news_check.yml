@@ -1,38 +1,26 @@
-name: News Agent Debug
+name: News Agent
 
 on:
-  workflow_dispatch:  # Только ручной запуск для отладки
+  schedule:
+    - cron: '*/15 * * * *'  # каждые 15 минут
+  workflow_dispatch:  # ручной запуск
 
 jobs:
-  debug:
+  check:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
     
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+    - run: pip install -r requirements.txt
     
-    - name: Run debug script
+    - name: Run agent
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
-      run: python news_agent_debug.py      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add sent_news.json
-        # Проверяем, есть ли изменения
-        if git diff --staged --quiet; then
-          echo "✅ Нет изменений для коммита"
-        else
-          git commit -m "Update sent news list [skip ci]"
-          git push
-          echo "✅ Изменения сохранены"
+      run: python news_agent.py          echo "✅ Изменения сохранены"
         fi
