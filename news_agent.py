@@ -127,7 +127,7 @@ def send_telegram(title, link, summary, topics):
 
 🔗 <a href="{link}">Подробнее</a>
 
-⏰ {datetime.now().strftime('%H:%M, %d.%m.%Y')}"""
+"""
     
     try:
         url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
