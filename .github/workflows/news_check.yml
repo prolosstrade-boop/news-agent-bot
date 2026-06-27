@@ -2,8 +2,11 @@ name: News Agent
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'  # Каждые 30 минут (экономия)
   workflow_dispatch:
+
+permissions:
+  contents: write  # Нужно для коммита sent_news.json
 
 jobs:
   check:
@@ -12,11 +15,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.12'
     
     - name: Install dependencies
       run: pip install -r requirements.txt
@@ -26,4 +31,19 @@ jobs:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         ACTIVE_TOPICS: ${{ secrets.ACTIVE_TOPICS }}
+        MAX_NEWS_AGE_HOURS: ${{ secrets.MAX_NEWS_AGE_HOURS }}
       run: python news_agent.py
+    
+    - name: Commit sent_news.json
+      if: always()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add sent_news.json
+        if git diff --staged --quiet; then
+          echo "✅ Нет изменений"
+        else
+          git commit -m "Update sent news hashes [skip ci]"
+          git push
+          echo "✅ Хешы сохранены"
+        fi
