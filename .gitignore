@@ -17,7 +17,7 @@ __pycache__/
 
 # Данные
 last_messages.json
-sent_news.json
+
 
 # IDE
 .vscode/
